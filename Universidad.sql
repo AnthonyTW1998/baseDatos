@@ -107,19 +107,6 @@ INSERT INTO curso VALUES(3, 'Terceo', 10);
 INSERT INTO curso VALUES(4, 'Cuarto', 53);
 INSERT INTO curso VALUES(5, 'Master', 11);
 INSERT INTO curso VALUES(6, 'Doctorado', 6);
-
--- Solicitamos el directorio donde donde alojar los archivos que querramos importar
- SELECT @@GLOBAL.secure_file_priv;
-
-/*Importamos el archivo alumnos.txt en la tabla alumno estableciendo ";" como separador
-entre campos y "\n", significa salto de linea, para definir que cada 
-registro acaba al haber salto de linea*/
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/alumnos.txt'
-INTO TABLE alumno
-FIELDS TERMINATED BY ';'
-LINES terminated by '\n'
-ignore 1 rows;
-
     -- Carga con inserción manual de datos profesor
 INSERT INTO profesor VALUES('PR001','34417139B','Juan','Infante','Fraidias','juan.infante.fraidias@ucm.com','Calle de los Almendros , 86',28070,'Las Rozas','Madrid','Asociados');
 INSERT INTO profesor VALUES('PR002','52479077P','David','Serna','Balmori','david.serna.balmori@ucm.com','Calle Abarejo , 44',28017,'Brea de Tajo','Madrid','Titulares Universidad');
@@ -169,14 +156,6 @@ INSERT INTO profesor VALUES('PR045','66989687K','Maria Teresa','Valderrama','Rup
 INSERT INTO profesor VALUES('PR046','47970524A','Ana','Padron','Balada','ana.padron.balada@ucm.com','Calle de Argentona , 179',28002,'Boadilla del Monte','Madrid','Titulares Universidad');
 INSERT INTO profesor VALUES('PR047','76965754O','Rafael','Figueroa','Casal','rafael.figueroa.casal@ucm.com','Calle de la Aeronave , 37',28004,'Colmenarejo','Madrid','PDI predoctoral');
 INSERT INTO profesor VALUES('PR048','48034341Q','Jose Manuel','Nevado','Veras','jose.manuel.nevado.veras@ucm.com','Calle Arlanza , 170',28001,'Ajalvir','Madrid','Catedráticos de Universidad');
-
-	-- Importamos los teléfonos de contacto de profesores como archivo .CSV
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/telefonosContacto.csv'
-INTO TABLE tlfContactoProf
-FIELDS TERMINATED BY ';'
-LINES terminated by '\n'
-ignore 1 rows;
-
     -- Carga con inserción manual de datos asignatura
 INSERT INTO asignatura VALUES (1,'AS001','Algebra lineal','2',6,'obligatoria','PR001');
 INSERT INTO asignatura VALUES (1,'AS002','Análisis exploratorio de datos','1',6,'obligatoria','PR002');
@@ -278,15 +257,6 @@ INSERT INTO asignatura VALUES (6,'AS097','Redes neuronales y algoritmos genétic
 INSERT INTO asignatura VALUES (6,'AS098','Gestión de relaciones con el cliente CRM','2',0,'optativa','PR005');
 INSERT INTO asignatura VALUES (6,'AS099','Inteligencia de negocio y cuadro de mando integral','2',0,'optativa','PR005');
 INSERT INTO asignatura VALUES (6,'AS100','Modelos de decisión en marketing','2',0,'optativa','PR005');
-
-	/* Importamos impartir.csv en la tabla 'impartir'. En este caso los campos del csv está separado por tabulaciones.
-    Por eso, usaremos la secuencia de escape '\t' para indicar a SQL como separar los datos*/
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/impartir.txt'
-INTO TABLE impartir
-FIELDS TERMINATED BY '\t'
-LINES terminated by '\n'
-ignore 1 rows;
-
     -- Carga con inserción manual de datos matricula (idAlumno, idAsignatura, Nota).
 INSERT INTO matricula VALUES('AL003','AS001',6.99);
 INSERT INTO matricula VALUES('AL003','AS002',9.71);
